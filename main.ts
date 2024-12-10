@@ -1,15 +1,17 @@
-joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P14, joystickbit.ButtonType.down, function () {
-    radio.sendNumber(4)
-})
-joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P15, joystickbit.ButtonType.down, function () {
-    radio.sendNumber(2)
-})
-joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P13, joystickbit.ButtonType.down, function () {
-    radio.sendNumber(1)
-})
-joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P12, joystickbit.ButtonType.down, function () {
-    radio.sendNumber(3)
-})
-basic.showNumber(1)
-radio.setGroup(1)
+let grupo = 0
+basic.showNumber(grupo)
+radio.setGroup(grupo)
 joystickbit.initJoystickBit()
+basic.forever(function () {
+    if (joystickbit.getButton(joystickbit.JoystickBitPin.P13)) {
+        radio.setGroup(1)
+    } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P12)) {
+        radio.setGroup(2)
+    } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P14)) {
+        radio.setGroup(3)
+    } else if (joystickbit.getButton(joystickbit.JoystickBitPin.P15)) {
+        radio.setGroup(4)
+    } else {
+        radio.setGroup(5)
+    }
+})
